@@ -22,13 +22,16 @@ namespace kurs
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            tbDirection.Value = 170;
+            tbDirection.Value = 270;
+            tbSpreading.Value = 100;
+            trackBar1.Value = 10;
+            trackBar2.Value = 10;
             picDisplay.MouseWheel += PicDisplay_MouseWheel;
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
                 Direction = 270,
-                Spreading = 0,
-                SpeedMin = 10,
+                Spreading = 100,
+                SpeedMin = 1,
                 SpeedMax = 10,
                 ColorFrom = Color.Gold,
                 ColorTo = Color.FromArgb(0, Color.Red),
@@ -78,6 +81,7 @@ namespace kurs
         private void tbSpreading_Scroll(object sender, EventArgs e)
         {
             emitter.Spreading = tbSpreading.Value;
+            label8.Text = $"{tbSpreading.Value}°";
         }
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
@@ -128,6 +132,19 @@ namespace kurs
                     }
                 }
             }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = trackBar1.Value;
+            label9.Text = $"{trackBar1.Value}°";
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            emitter.SpeedMax = trackBar2.Value;
+            emitter.SpeedMin = trackBar2.Value;
+            label10.Text = $"{trackBar2.Value}°";
         }
     }
 }

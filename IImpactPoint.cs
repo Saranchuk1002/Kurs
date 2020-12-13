@@ -11,7 +11,9 @@ namespace kurs
     {
         public float X; 
         public float Y;
-        public int Particlescounter;
+        public int SmallParticlescounter = 0;
+        public int MediumParticlescounter = 0;
+        public int BigParticlescounter = 0;
         public int alpha;// прозрачность
 
         public abstract void ImpactParticle(Particle particle);
@@ -51,15 +53,9 @@ namespace kurs
             stringFormat.Alignment = StringAlignment.Center;
             stringFormat.LineAlignment = StringAlignment.Center;
 
-            // обязательно выносим текст и шрифт в переменные
-            var font = new Font("Times new roman", 15);
-            var cou = $"{Particlescounter}";
-            // вызываем MeasureString, чтобы померить размеры текста
-            var size = g.MeasureString(cou, font);
-            // ну и текст рисую уже на базе переменных
             g.DrawString(
-                cou,
-                font,
+                $"Маленькие{SmallParticlescounter}\n Средние{MediumParticlescounter}\n Большие {BigParticlescounter}",
+                new Font("Times new roman", 10),
                 new SolidBrush(Color.White),
                 X,
                 Y,
@@ -80,7 +76,22 @@ namespace kurs
                 
                 if (particle.Life <= 0)
                 {
-                    Particlescounter++;             
+                    
+                    if (particle.Radius < 4)
+                    {
+                        SmallParticlescounter++;
+                    }
+                    else
+                    {
+                        if (particle.Radius > 8)
+                        {
+                            MediumParticlescounter++;
+                        }
+                        else
+                        {
+                            BigParticlescounter++;
+                        }
+                    }
                 }
                 if (alpha < 255)
                 {
