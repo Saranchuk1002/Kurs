@@ -56,7 +56,6 @@ namespace kurs
             var cou = $"{Particlescounter}";
             // вызываем MeasureString, чтобы померить размеры текста
             var size = g.MeasureString(cou, font);
-          
             // ну и текст рисую уже на базе переменных
             g.DrawString(
                 cou,

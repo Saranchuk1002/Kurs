@@ -33,19 +33,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tbDirection = new System.Windows.Forms.TrackBar();
             this.lblDirection = new System.Windows.Forms.Label();
-            this.tbGraviton = new System.Windows.Forms.TrackBar();
-            this.tbGraviton2 = new System.Windows.Forms.TrackBar();
             this.tbSpreading = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,27 +76,9 @@
             this.lblDirection.Size = new System.Drawing.Size(0, 13);
             this.lblDirection.TabIndex = 2;
             // 
-            // tbGraviton
-            // 
-            this.tbGraviton.Location = new System.Drawing.Point(163, 502);
-            this.tbGraviton.Maximum = 100;
-            this.tbGraviton.Name = "tbGraviton";
-            this.tbGraviton.Size = new System.Drawing.Size(152, 45);
-            this.tbGraviton.TabIndex = 3;
-            this.tbGraviton.Scroll += new System.EventHandler(this.tbGraviton_Scroll);
-            // 
-            // tbGraviton2
-            // 
-            this.tbGraviton2.Location = new System.Drawing.Point(163, 451);
-            this.tbGraviton2.Maximum = 100;
-            this.tbGraviton2.Name = "tbGraviton2";
-            this.tbGraviton2.Size = new System.Drawing.Size(152, 45);
-            this.tbGraviton2.TabIndex = 4;
-            this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
-            // 
             // tbSpreading
             // 
-            this.tbSpreading.Location = new System.Drawing.Point(12, 502);
+            this.tbSpreading.Location = new System.Drawing.Point(5, 502);
             this.tbSpreading.Maximum = 500;
             this.tbSpreading.Name = "tbSpreading";
             this.tbSpreading.Size = new System.Drawing.Size(104, 45);
@@ -120,20 +97,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(173, 483);
+            this.label2.Location = new System.Drawing.Point(152, 502);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 13);
+            this.label2.Size = new System.Drawing.Size(314, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Размер левой окружности";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(173, 534);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Размер правой окружности";
+            this.label2.Text = "На колесико мыши, вы можете изменять размер счетчиков";
             // 
             // label4
             // 
@@ -147,7 +115,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(357, 460);
+            this.label5.Location = new System.Drawing.Point(152, 451);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(302, 13);
             this.label5.TabIndex = 10;
@@ -156,11 +124,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(358, 483);
+            this.label6.Location = new System.Drawing.Point(152, 474);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(301, 13);
+            this.label6.Size = new System.Drawing.Size(372, 13);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Нажмите на правую кнопку мыши, чтобы удалить счетчик";
+            this.label6.Text = "Нажмите на правую кнопку мыши, чтобы удалить добавленный счетчик";
             // 
             // Form1
             // 
@@ -170,12 +138,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbSpreading);
-            this.Controls.Add(this.tbGraviton2);
-            this.Controls.Add(this.tbGraviton);
             this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.picDisplay);
@@ -183,8 +148,6 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -197,12 +160,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TrackBar tbDirection;
         private System.Windows.Forms.Label lblDirection;
-        private System.Windows.Forms.TrackBar tbGraviton;
-        private System.Windows.Forms.TrackBar tbGraviton2;
         private System.Windows.Forms.TrackBar tbSpreading;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

@@ -22,10 +22,8 @@ namespace kurs
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            tbGraviton.Value = 100;
-            tbGraviton2.Value = 100;
             tbDirection.Value = 170;
-
+            picDisplay.MouseWheel += PicDisplay_MouseWheel;
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
                 Direction = 270,
@@ -77,16 +75,6 @@ namespace kurs
             lblDirection.Text = $"{tbDirection.Value}°"; // добавил вывод значения
         }
 
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            point1.Power = tbGraviton.Value;
-        }
-
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
-        {
-            point2.Power = tbGraviton2.Value;
-        }
-
         private void tbSpreading_Scroll(object sender, EventArgs e)
         {
             emitter.Spreading = tbSpreading.Value;
@@ -110,9 +98,34 @@ namespace kurs
                     X = e.X,
                     Y = e.Y,
                 };
-                if (emitter.impactPoints.Count > 0)
+                if (emitter.impactPoints.Count > 2)
                 {
                     emitter.impactPoints.RemoveAt(emitter.impactPoints.Count - 1);
+                }
+            }
+        }
+        private void PicDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta < 0 && point1.Power > 0)
+            {
+                foreach (var p in emitter.impactPoints)
+                {
+                    if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
+                    {
+                        // если гравитон то меняем силу
+                        (p as GravityPoint).Power -= 5;
+                    }
+                }
+            }
+            if (e.Delta > 0 && point1.Power < 100)
+            {
+                foreach (var p in emitter.impactPoints)
+                {
+                    if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
+                    {
+                        // если гравитон то меняем силу
+                        (p as GravityPoint).Power +=5 ;
+                    }
                 }
             }
         }
