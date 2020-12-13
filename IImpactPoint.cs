@@ -9,19 +9,18 @@ namespace kurs
 {
     public abstract class IImpactPoint
     {
-        public float X; // ну точка же, вот и две координаты
+        public float X; 
         public float Y;
         public int Particlescounter;
+        public int alpha;// прозрачность
 
-        // абстрактный метод с помощью которого будем изменять состояние частиц
-        // например притягивать
         public abstract void ImpactParticle(Particle particle);
       
         // базовый класс для отрисовки точечки
         public virtual void Render(Graphics g)
         {
             g.FillEllipse(
-                    new SolidBrush(Color.Red),
+                    new SolidBrush(Color.Orange),
                     X - 5,
                     Y - 5,
                     10,
@@ -34,6 +33,13 @@ namespace kurs
         public int Power = 100; // сила притяжения
         public override void Render(Graphics g)
         {
+            g.FillEllipse(
+                   new SolidBrush(Color.FromArgb(alpha, Color.Orange)),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               ); ;
             g.DrawEllipse(
                    new Pen(Color.White),
                    X - Power / 2,
@@ -46,7 +52,7 @@ namespace kurs
             stringFormat.LineAlignment = StringAlignment.Center;
 
             // обязательно выносим текст и шрифт в переменные
-            var font = new Font("Verdana", 10);
+            var font = new Font("Times new roman", 15);
             var cou = $"{Particlescounter}";
             // вызываем MeasureString, чтобы померить размеры текста
             var size = g.MeasureString(cou, font);
@@ -75,8 +81,11 @@ namespace kurs
                 
                 if (particle.Life <= 0)
                 {
-                    Particlescounter++;
-                   
+                    Particlescounter++;             
+                }
+                if (alpha < 255)
+                {
+                    alpha++;
                 }
             }
 
