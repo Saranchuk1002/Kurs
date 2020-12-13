@@ -103,6 +103,18 @@ namespace kurs
                 };
                 emitter.impactPoints.Add(newpoint);
             }
+            else if (e.Button == MouseButtons.Right)
+            {
+                newpoint = new GravityPoint
+                {
+                    X = e.X,
+                    Y = e.Y,
+                };
+                if (emitter.impactPoints.Count > 0)
+                {
+                    emitter.impactPoints.RemoveAt(emitter.impactPoints.Count - 1);
+                }
+            }
         }
     }
 }
