@@ -98,7 +98,6 @@ namespace kurs
             else if (e.Button == MouseButtons.Right)
             {
                 {
-
                     int xMouse = e.X;
                     int yMouse = e.Y;
 
@@ -122,30 +121,33 @@ namespace kurs
         }
         private void PicDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (e.Delta < 0 && point1.Power > 0)
-            {
-                foreach (var p in emitter.impactPoints)
-                {  
-                    if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
-                    {
-                        // если гравитон то меняем силу
-                        (p as GravityPoint).Power -= 5;
-                    }
-                }
-            }
-            if (e.Delta > 0 && point1.Power < 100)
-            {
-                foreach (var p in emitter.impactPoints)
-                {
-                    if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
-                    {
-                        // если гравитон то меняем силу
-                        (p as GravityPoint).Power +=5 ;
-                    }
-                }
-            }
-        }
+            int xMouse = e.X;
+            int yMouse = e.Y;
 
+            for (int i = 0; i < emitter.impactPoints.Count(); i++)
+            {
+                var g = Graphics.FromImage(picDisplay.Image);
+
+                float gX = emitter.impactPoints[i].X - xMouse;
+                float gY = emitter.impactPoints[i].Y - yMouse;
+
+                double r = Math.Sqrt(gX * gX + gY * gY); //расстояние от центра точки до мышки
+                if (r < emitter.impactPoints[i].Power / 2)
+                {
+                    if (e.Delta > 0)
+                    {
+                        if (emitter.impactPoints[i].Power < 200)
+                            emitter.impactPoints[i].Power += 5;
+                    }
+                    else if (e.Delta < 0)
+                    {
+                        if (emitter.impactPoints[i].Power > 10)
+                            emitter.impactPoints[i].Power -= 5;
+                    }
+                }
+            }
+
+        }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             emitter.ParticlesPerTick = trackBar1.Value;
