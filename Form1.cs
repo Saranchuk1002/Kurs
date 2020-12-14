@@ -97,14 +97,26 @@ namespace kurs
             }
             else if (e.Button == MouseButtons.Right)
             {
-                newpoint = new GravityPoint
                 {
-                    X = e.X,
-                    Y = e.Y,
-                };
-                if (emitter.impactPoints.Count > 2)
-                {
-                    emitter.impactPoints.RemoveAt(emitter.impactPoints.Count - 1);
+
+                    int xMouse = e.X;
+                    int yMouse = e.Y;
+
+                    for (int i=0; i < emitter.impactPoints.Count(); i++)
+                    {
+                        var g = Graphics.FromImage(picDisplay.Image);
+
+                        float gX = emitter.impactPoints[i].X - xMouse;
+                        float gY = emitter.impactPoints[i].Y - yMouse;
+
+                        double r = Math.Sqrt(gX * gX + gY * gY); //расстояние от центра точки до мышки
+                        if (r < emitter.impactPoints[i].Power / 2)
+                        {
+                            emitter.impactPoints.RemoveAt(i);
+                            
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -113,7 +125,7 @@ namespace kurs
             if (e.Delta < 0 && point1.Power > 0)
             {
                 foreach (var p in emitter.impactPoints)
-                {
+                {  
                     if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
                     {
                         // если гравитон то меняем силу
@@ -146,5 +158,6 @@ namespace kurs
             emitter.SpeedMin = trackBar2.Value;
             label10.Text = $"{trackBar2.Value}°";
         }
+        
     }
 }

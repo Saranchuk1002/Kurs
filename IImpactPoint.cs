@@ -72,8 +72,7 @@ namespace kurs
             double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы           
             if (r + particle.Radius < Power / 2) // если частица оказалось внутри окружности
             {
-                particle.Life = 0;
-                
+                particle.Life = 0;              
                 if (particle.Life <= 0)
                 {
                     

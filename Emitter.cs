@@ -16,9 +16,9 @@ namespace kurs
         public float GravitationX = 0;
         public float GravitationY = 1;
 
-        public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // тут буду храниться точки притяжения
+        public List<GravityPoint> impactPoints = new List<GravityPoint>(); // тут буду храниться точки притяжения
 
-
+        
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
         public int Y; // соответствующая координата Y 
         public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
