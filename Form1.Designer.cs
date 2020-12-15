@@ -166,7 +166,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 13);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Количетсво частиц";
+            this.label3.Text = "Количество частиц";
             // 
             // trackBar2
             // 
@@ -236,7 +236,7 @@
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.picDisplay);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Вариант 6";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();

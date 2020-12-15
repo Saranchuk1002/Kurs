@@ -11,14 +11,14 @@ namespace kurs
     {
         public float X; 
         public float Y;
-        public int SmallParticlescounter = 0;
-        public int MediumParticlescounter = 0;
-        public int BigParticlescounter = 0;
+        public int SmallParticlescounter = 0;//счетчик под маленькие частицы
+        public int MediumParticlescounter = 0;//счетчик под средние частицы
+        public int BigParticlescounter = 0;//счетчик под большие частицы
         public int alpha;// прозрачность
 
         public abstract void ImpactParticle(Particle particle);
       
-        // базовый класс для отрисовки точечки
+        // базовый класс для отрисовки точки
         public virtual void Render(Graphics g)
         {
             g.FillEllipse(
@@ -33,6 +33,7 @@ namespace kurs
     public class GravityPoint : IImpactPoint
     {
         public int Power = 100; // сила притяжения
+        //рисуем счетчики
         public override void Render(Graphics g)
         {
             g.FillEllipse(
@@ -54,7 +55,7 @@ namespace kurs
             stringFormat.LineAlignment = StringAlignment.Center;
 
             g.DrawString(
-                $"Маленькие{SmallParticlescounter}\n Средние{MediumParticlescounter}\n Большие {BigParticlescounter}",
+                $"Маленькие {SmallParticlescounter}\n Средние {MediumParticlescounter}\n Большие {BigParticlescounter}",
                 new Font("Times new roman", 10),
                 new SolidBrush(Color.White),
                 X,
@@ -62,7 +63,6 @@ namespace kurs
                 stringFormat
             );
         }
-        // а сюда по сути скопировали с минимальными правками то что было в UpdateState
         public override void ImpactParticle(Particle particle)
         {
             
